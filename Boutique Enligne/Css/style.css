@@ -1,0 +1,416 @@
+/* =========================
+   BarkiMarket - Modern CSS
+   ========================= */
+
+/* 1) Reset + base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root{
+  --bg: #0b1220;
+  --surface: rgba(255,255,255,.06);
+  --surface-2: rgba(255,255,255,.09);
+  --border: rgba(255,255,255,.12);
+  --text: #eaf0ff;
+  --muted: #9fb0c8;
+  --primary: #4f8cff;
+  --primary-2: #7c3aed;
+  --shadow: 0 18px 40px rgba(0,0,0,.35);
+  --radius: 16px;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(1200px 700px at 15% -10%, rgba(79,140,255,.22), transparent 60%),
+    radial-gradient(900px 600px at 95% 5%, rgba(124,58,237,.18), transparent 55%),
+    var(--bg);
+  line-height: 1.5;
+}
+
+/* Liens */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* 2) Header */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+
+  padding: 18px 18px;
+  text-align: center;
+
+  background: rgba(11, 18, 32, .75);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+header::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(79,140,255,.18), rgba(124,58,237,.12));
+  opacity: .5;
+  pointer-events: none;
+}
+
+header {
+  font-size: clamp(18px, 2.2vw, 28px);
+  font-weight: 900;
+  letter-spacing: .3px;
+}
+
+/* 3) Navigation */
+#nav-links {
+  width: min(980px, 92%);
+  margin: 22px auto;
+  padding: 10px;
+
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* Boutons de nav */
+#nav-links a {
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+
+  font-weight: 750;
+  color: var(--text);
+
+  transition: transform .15s ease, background .15s ease, border-color .15s ease;
+}
+
+/* Effets */
+#nav-links a:hover {
+  transform: translateY(-1px);
+  background: rgba(255,255,255,.08);
+  border-color: rgba(255,255,255,.18);
+}
+
+#nav-links a:active {
+  transform: translateY(0px);
+}
+
+/* Lien "actif" (si tu ajoutes class="active") */
+#nav-links a.active {
+  background: linear-gradient(135deg, rgba(79,140,255,.95), rgba(124,58,237,.95));
+  border-color: transparent;
+}
+
+/* 4) Titre section */
+.title {
+  width: min(980px, 92%);
+  margin: 26px auto 12px;
+  padding: 16px 16px;
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+
+  background: var(--surface);
+  box-shadow: var(--shadow);
+
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 900;
+}
+
+.title::after{
+  content: "";
+  display: block;
+  margin-top: 10px;
+  height: 3px;
+  width: 92px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--primary), var(--primary-2));
+  opacity: .9;
+}
+
+/* 5) Footer */
+footer {
+  width: min(980px, 92%);
+  margin: 30px auto 26px;
+  padding: 14px 16px;
+
+  text-align: center;
+  color: var(--muted);
+
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+/* 6) Responsive */
+@media (max-width: 520px) {
+  #nav-links {
+    padding: 12px;
+    gap: 8px;
+  }
+  #nav-links a {
+    width: 100%;
+    text-align: center;
+  }
+}
+/* =========================
+   Product grid (Home)
+   ========================= */
+
+.products {
+  width: min(980px, 92%);
+  margin: 0 auto 28px;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.product-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+
+  background: rgba(255,255,255,.04);
+  box-shadow: 0 10px 24px rgba(0,0,0,.22);
+
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  gap: 10px;
+
+  transition: transform .16s ease, border-color .16s ease, background .16s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,.22);
+  background: rgba(255,255,255,.06);
+}
+
+.product-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.02);
+}
+
+.product-name {
+  margin: 0;
+  font-weight: 850;
+  font-size: 15px;
+  line-height: 1.25;
+}
+
+.product-price {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 950;
+  color: #dbe8ff;
+}
+
+.btn-add {
+  margin-top: auto;
+  width: 100%;
+  padding: 11px 12px;
+
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: linear-gradient(135deg, rgba(79,140,255,.95), rgba(124,58,237,.95));
+  color: white;
+
+  font-weight: 900;
+  cursor: pointer;
+
+  transition: transform .12s ease, filter .12s ease;
+}
+
+.btn-add:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+.btn-add:active {
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 980px) {
+  .products { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 520px) {
+  .products { grid-template-columns: 1fr; }
+  .product-card img { height: 200px; }
+}
+/* =========================
+   AUTH PAGE - Connexion
+   ========================= */
+
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.auth-form {
+  width: 100%;
+  max-width: 420px;
+  padding: 28px;
+
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.05);
+  backdrop-filter: blur(10px);
+
+  box-shadow: 0 25px 60px rgba(0,0,0,.4);
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.auth-form h2 {
+  margin: 0 0 10px;
+  text-align: center;
+  font-weight: 900;
+  font-size: 24px;
+}
+
+.auth-form label {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.auth-form input {
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.15);
+  background: rgba(255,255,255,.04);
+  color: var(--text);
+  outline: none;
+
+  transition: border .2s ease, box-shadow .2s ease;
+}
+
+.auth-form input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(79,140,255,.25);
+}
+
+.auth-form button {
+  margin-top: 8px;
+  padding: 12px;
+  border-radius: 14px;
+  border: none;
+
+  font-weight: 900;
+  font-size: 15px;
+
+  background: linear-gradient(135deg, var(--primary), var(--primary-2));
+  color: white;
+  cursor: pointer;
+
+  transition: transform .15s ease, filter .15s ease;
+}
+
+.auth-form button:hover {
+  filter: brightness(1.05);
+  transform: translateY(-2px);
+}
+
+.auth-form button:active {
+  transform: translateY(0);
+}
+
+.auth-link {
+  text-align: center;
+  margin-top: 12px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.auth-link a {
+  font-weight: 800;
+  color: var(--primary);
+}
+/* =========================
+   REGISTER PAGE
+   ========================= */
+
+.form-row {
+  display: flex;
+  gap: 12px;
+}
+
+.input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.input-group label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.input-group input {
+  padding: 11px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.15);
+  background: rgba(255,255,255,.04);
+  color: var(--text);
+  outline: none;
+
+  transition: border .2s ease, box-shadow .2s ease;
+}
+
+.input-group input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(79,140,255,.25);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .form-row {
+    flex-direction: column;
+  }
+}
+.user-name {
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(79,140,255,.15);
+  border: 1px solid rgba(79,140,255,.35);
+  font-weight: 800;
+}
+
+.logout-btn {
+  background: rgba(255,80,80,.15);
+  border: 1px solid rgba(255,80,80,.35);
+}
